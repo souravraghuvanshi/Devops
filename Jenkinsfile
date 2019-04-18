@@ -27,19 +27,19 @@ node {
     stage ('Publish build info') {
         server.publishBuildInfo buildInfo
     }
-     /*stage('SonarQube analysis') {
+     stage('SonarQube analysis') {
          mvnHome = tool 'mavenhome'
     withSonarQubeEnv('sonar') {
       // requires SonarQube Scanner for Maven 3.2+
       rtMaven.run pom: 'pom.xml', goals: 'clean package sonar:sonar', buildInfo: buildInfo
     }
-     } */
+     } 
   
   stage('Build Docker image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line 
          app = docker.build("sanyambatra13/maven-demo") */
-         sh 'sudo docker build -t maven-demo:ver1 .'
+         sh 'sudo docker build -t jenkins-webapp:ver1 .'
      }
 
      stage('Push image') 
@@ -60,9 +60,9 @@ node {
     
     
      sh "sudo docker login -u $DockerUser -p $DockerPass"
-            sh 'sudo docker tag maven-demo:ver1 sanyambatra13/maven-demo:ver1'
-            sh ' sudo docker push sanyambatra13/maven-demo:ver1'
-            sh 'sudo docker run sanyambatra13/maven-demo:ver1'
+            sh 'sudo docker tag jenkins-webapp:ver1 sanyambatra13/jenkins-webappjenkins-webapp:ver1'
+            sh ' sudo docker push sanyambatra13/jenkins-webapp:ver1'
+            sh 'sudo docker run sanyambatra13/jenkins-webapp:ver1'
 }
             
             
