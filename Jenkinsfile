@@ -60,7 +60,7 @@ node {
     
     
      sh "sudo docker login -u $DockerUser -p $DockerPass"
-            sh 'sudo docker tag jenkins-webapp:ver1 sanyambatra13/jenkins-webappjenkins-webapp:ver1'
+            sh 'sudo docker tag jenkins-webapp:ver1 sanyambatra13/jenkins-webapp:ver1'
             sh ' sudo docker push sanyambatra13/jenkins-webapp:ver1'
             sh 'sudo docker run sanyambatra13/jenkins-webapp:ver1'
 }
